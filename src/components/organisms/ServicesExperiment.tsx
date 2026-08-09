@@ -62,6 +62,7 @@ export function ServicesExperiment({
       }
 
       const expand = () => {
+        if (!isDesktop) gsap.set(selectedPanel, { zIndex: 2 });
         const state = Flip.getState(selectedPanel);
         flushSync(() => setSelectedId(serviceId));
 
@@ -113,7 +114,10 @@ export function ServicesExperiment({
           { autoAlpha: 1, x: 0, duration: 0.34, stagger: 0.04 },
           "service-layout+=0.28",
         );
-        timeline.call(() => closeButton?.focus());
+        timeline.call(() => {
+          if (!isDesktop) gsap.set(selectedPanel, { clearProps: "zIndex" });
+          closeButton?.focus();
+        });
       };
 
       if (isDesktop) {
@@ -164,6 +168,7 @@ export function ServicesExperiment({
       const detailCopy = activePanel.querySelector<HTMLElement>("[data-service-detail-copy]");
       const closeButton = activePanel.querySelector<HTMLButtonElement>("[data-service-close]");
       const detailParts = root.querySelectorAll<HTMLElement>("[data-service-detail-part]");
+      if (!isDesktop) gsap.set(activePanel, { zIndex: 2 });
       const timeline = gsap.timeline({ defaults: { ease: "power2.inOut" } });
       timeline.to(detailParts, { autoAlpha: 0, x: -14, duration: 0.18, stagger: 0.018 }, 0);
       timeline.to(detailCopy, { autoAlpha: 0, x: -76, duration: 0.38 }, 0.08);
@@ -199,7 +204,10 @@ export function ServicesExperiment({
           });
         }
 
-        collapse.eventCallback("onComplete", restoreFocus);
+        collapse.eventCallback("onComplete", () => {
+          if (!isDesktop) gsap.set(activePanel, { clearProps: "zIndex" });
+          restoreFocus();
+        });
       });
     })();
   }, [contextSafe, selectedId]);

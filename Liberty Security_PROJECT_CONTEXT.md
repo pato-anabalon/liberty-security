@@ -36,7 +36,7 @@ Pages and metadata stay server-rendered. State, browser APIs, dialogs, analytics
 
 ## Visual system
 
-Tokens: Black `#000000`, Cream `#F2EFE8`, Liberty Gold `#C8A45D`, Liberty Blue `#1E2A38`, Secondary Cream `#F3E9D8`, Secondary Blue `#3C507D`. Sora is the display face; Manrope is the body face. Surfaces alternate cream, blue, black and gold. Buttons, text links, chips and informational labels remain visually distinct.
+Tokens: Black `#000000`, Cream `#F2EFE8`, Liberty Gold `#C8A45D`, Liberty Blue `#1E2A38`, Secondary Cream `#F3E9D8`, Secondary Blue `#3C507D`. Sora is the display face; Manrope is the body face. Surfaces alternate cream, blue, black and gold. Buttons, text links, chips and informational labels remain visually distinct. Why Liberty values use cream dimensional cards with shaped corners, controlled gold/blue accent bands, monograms and overlapping number medallions; layout is one, two and five columns across mobile, tablet and desktop.
 
 The source JPEG is preserved in `docs/logo.jpeg` and copied to `public/brand/liberty-security-logo.jpeg` for the footer. The header and preloader use the dedicated transparent `public/brand/liberty-logo.png` mark.
 
@@ -65,7 +65,7 @@ Motion types remain separated:
 - Hero content entrance: `HeroContentEntrance` owns one scoped GSAP/SplitText timeline. H1 words use a masked perspective reveal, lead words use a separate lateral wave and the CTAs remain whole. It waits for `liberty:preloader-complete`, restores split markup during cleanup, clears inline transform styles to preserve CTA hovers and skips motion entirely for reduced-motion users.
 - Once reveals: `ScrollReveal` uses one-shot viewport entrance timelines.
 - Hover: CSS-owned and not overwritten by scroll timelines.
-- Services gallery: `ServicesExperiment` owns one scoped, click-driven GSAP Flip transition on both the landing and temporary review route. Opening is intentionally staged: the selected image holds its accordion presentation while the gallery clears, then shifts right as its left transparency mask, left-entering detail card and bottom-right back control resolve together. Closing reverses those roles before restoring the accordion; fixed desktop grid columns preserve the selected service's slot while Flip temporarily positions it absolutely. It never uses ScrollTrigger or shares a timeline with other landing motion; reduced motion changes state instantly.
+- Services gallery: `ServicesExperiment` owns one scoped, click-driven GSAP Flip transition on both the landing and temporary review route. Opening is intentionally staged: the selected image holds its accordion presentation while the gallery clears, then shifts right as its left transparency mask, left-entering detail card and bottom-right back control resolve together. Closing reverses those roles before restoring the accordion; fixed desktop grid columns preserve the selected service's slot while Flip temporarily positions it absolutely. Mobile gives only the transitioning panel a temporary foreground `z-index` and clears it on completion so sibling cards cannot cover either direction. It never uses ScrollTrigger or shares a timeline with other landing motion; reduced motion changes state instantly.
 
 Reduced motion removes the preloader, fog drift and reveal transforms while retaining every message, CTA and the complete static eagle photograph.
 

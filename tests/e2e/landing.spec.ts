@@ -57,6 +57,7 @@ test("renders the commercial story and service detail", async ({ page }) => {
   await expect(contactSection.getByRole("link", { name: /Email Liberty/i })).toHaveAttribute("href", "mailto:libertysecuritylimited@gmail.com");
   await expect(page.getByTestId("site-footer")).toContainText("NZBN 94-29053833112");
   await expect(page.getByTestId("home-services-card-grid").locator("article")).toHaveCount(8);
+  await expect(page.getByTestId("home-values-grid").locator("article")).toHaveCount(5);
   await page.getByTestId("services-experiment-panel-event-security").getByRole("button").click();
   await expect(page.getByTestId("services-experiment-detail")).toBeVisible();
   await expect(page.getByTestId("services-experiment-detail").getByRole("heading", { name: "Event Security", exact: true })).toBeVisible();

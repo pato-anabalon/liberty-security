@@ -36,9 +36,9 @@ npm run verify       # lint + typecheck + unit tests + build
 
 ## Public route and sections
 
-Only `/` is indexable. It contains `hero`, `services`, `why-liberty`, `process`, `clients`, `about` and `contact`. The centered header mark links to `#top`, with two navigation labels on each side and contact actions at the right edge on desktop. The hero keeps its commercial copy, a preloader-coordinated content entrance and two rounded conversion paths without a separate proof panel. Services use an image-led accordion that expands inline into the selected service detail; there are no indexable service or plan routes. `/api/*` contains operational handlers and is disallowed in robots.
+Only `/` is indexable. It contains `hero`, `services`, `why-liberty`, `process`, `clients`, `about` and `contact`. The centered header mark links to `#top`, with two navigation labels on each side and contact actions at the right edge on desktop. The hero keeps its commercial copy, a preloader-coordinated content entrance and two rounded conversion paths without a separate proof panel. Services use an image-led accordion that expands inline into the selected service detail; the Why Liberty values use layered, numbered cards with a restrained Liberty accent palette. There are no indexable service or plan routes. `/api/*` contains operational handlers and is disallowed in robots.
 
-`/services-experiment` remains a temporary, `noindex` review surface for the same services interaction now used on the landing. It is intentionally excluded from the sitemap.
+`/services-experiment` remains a temporary, `noindex` review surface for the same services interaction now used on the landing. It is intentionally excluded from the sitemap. On mobile, the active accordion panel owns a temporary foreground layer for the complete open/close Flip transition, then releases it when the motion finishes.
 
 Commercial copy lives in `src/lib/content.ts`; metadata and structured data live in `src/lib/seo.ts`.
 

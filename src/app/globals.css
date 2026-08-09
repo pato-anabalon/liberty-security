@@ -122,11 +122,19 @@ dialog::backdrop { background: rgba(6, 10, 14, .78); backdrop-filter: blur(8px);
 
 .why-section__intro { display: grid; gap: 2.5rem; }
 .why-section blockquote { align-self: end; margin: 0; padding: 1.5rem; border-left: 3px solid var(--gold); color: var(--gold); font-family: var(--font-display), sans-serif; font-size: 1.3rem; line-height: 1.35; }
-.values-grid { display: grid; grid-template-columns: 1fr; gap: 1px; margin-top: 3.5rem; background: var(--line-dark); border: 1px solid var(--line-dark); }
-.values-grid article { min-height: 215px; padding: 1.4rem; background: rgba(30, 42, 56, .96); }
-.values-grid article > span { color: var(--gold); font-size: .65rem; font-weight: 800; }
-.values-grid h3 { margin: 2.7rem 0 .75rem; font-family: var(--font-display), sans-serif; font-size: 1.3rem; }
-.values-grid p { margin: 0; color: rgba(242, 239, 232, .65); font-size: .86rem; line-height: 1.6; }
+.values-grid { display: grid; grid-template-columns: 1fr; gap: 1.15rem; margin-top: 3.5rem; }
+.value-card-reveal { --value-accent: #c8a45d; height: 100%; }
+.values-grid > .value-card-reveal:nth-child(2) { --value-accent: #4d4e50; }
+.values-grid > .value-card-reveal:nth-child(3) { --value-accent: #9f7b3f; }
+.values-grid > .value-card-reveal:nth-child(4) { --value-accent: #acadad; }
+.values-grid > .value-card-reveal:nth-child(5) { --value-accent: #d7bd87; }
+.value-card { position: relative; isolation: isolate; min-height: 245px; height: 100%; display: flex; flex-direction: column; overflow: hidden; padding: 1.45rem 1.4rem 5.25rem; border: 1px solid rgba(242, 239, 232, .28); border-radius: 2.6rem .35rem 1.1rem 1.1rem; background: linear-gradient(145deg, rgba(255, 255, 255, .98), rgba(242, 239, 232, .94)); color: var(--ink); box-shadow: 0 22px 45px rgba(4, 9, 15, .24), 0 1px 0 rgba(255, 255, 255, .8) inset; }
+.value-card::before { position: absolute; z-index: -1; top: 1.5rem; right: 0; width: 34%; height: 12px; background: var(--value-accent); clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); content: ""; }
+.value-card::after { position: absolute; z-index: -1; right: 0; bottom: 0; left: 0; height: 3.75rem; background: var(--value-accent); content: ""; }
+.value-card__monogram { width: 2.55rem; height: 2.55rem; display: grid; place-items: center; border: 1px solid color-mix(in srgb, var(--value-accent) 76%, var(--ink)); border-radius: 50% 50% 50% .35rem; color: var(--ink); font-family: var(--font-display), sans-serif; font-size: .88rem; font-weight: 800; }
+.values-grid h3 { margin: 2.1rem 0 .75rem; font-family: var(--font-display), sans-serif; font-size: 1.4rem; letter-spacing: -.035em; }
+.values-grid p { margin: 0; color: rgba(16, 22, 29, .7); font-size: .86rem; line-height: 1.6; }
+.value-card__number { position: absolute; z-index: 1; left: 50%; bottom: .62rem; width: 3.9rem; height: 3.9rem; display: grid; place-items: center; border: .38rem solid var(--value-accent); border-radius: 50%; background: var(--cream); color: var(--ink); box-shadow: 0 8px 20px rgba(4, 9, 15, .24); font-family: var(--font-display), sans-serif; font-size: .83rem; font-weight: 800; transform: translateX(-50%); }
 
 .process-section .section-heading { margin-bottom: 3rem; }
 .process-list { margin: 0; padding: 0; border-top: 1px solid var(--line-dark); list-style: none; }
@@ -251,7 +259,8 @@ dialog::backdrop { background: rgba(6, 10, 14, .78); backdrop-filter: blur(8px);
   .liberty-container { width: min(100% - 3rem, 1240px); }
   .hero-section__actions { flex-direction: row; }
   .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .values-grid { grid-template-columns: repeat(2, 1fr); }
+  .values-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .values-grid > .value-card-reveal:last-child { width: calc(50% - .625rem); grid-column: 1 / -1; justify-self: center; }
   .industries-list { grid-template-columns: repeat(2, 1fr); column-gap: 1.5rem; }
   .team-placeholders { grid-template-columns: repeat(2, 1fr); }
   .contact-form { padding: 2rem; }
@@ -282,8 +291,6 @@ dialog::backdrop { background: rgba(6, 10, 14, .78); backdrop-filter: blur(8px);
   .hero-section__scroll i::after { content: ""; position: absolute; left: 0; top: -1px; width: 20px; height: 3px; background: var(--gold); animation: scroll-pulse 2.3s ease-in-out infinite; }
   @keyframes scroll-pulse { 50% { transform: translateX(50px); } }
   .why-section__intro { grid-template-columns: minmax(0, 1.7fr) minmax(260px, .7fr); }
-  .values-grid { grid-template-columns: repeat(5, 1fr); }
-  .values-grid article { min-height: 270px; }
   .process-list li { grid-template-columns: 80px minmax(0, 1fr) 30px; padding: 1.8rem 0; }
   .process-list li > div { display: grid; grid-template-columns: minmax(210px, .7fr) minmax(0, 1fr); gap: 2rem; }
   .industries-section__layout { grid-template-columns: minmax(0, 1.15fr) minmax(340px, .85fr); gap: 5rem; }
@@ -302,6 +309,10 @@ dialog::backdrop { background: rgba(6, 10, 14, .78); backdrop-filter: blur(8px);
   .hero-section__copy { max-width: 910px; }
   .services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .service-card { min-height: 350px; }
+  .values-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; }
+  .values-grid > .value-card-reveal:last-child { width: auto; grid-column: auto; justify-self: stretch; }
+  .value-card { min-height: 285px; padding-inline: 1.2rem; }
+  .values-grid h3 { font-size: clamp(1.15rem, 1.55vw, 1.45rem); }
   .about-section__statement > div { font-size: 1.08rem; }
 }
 

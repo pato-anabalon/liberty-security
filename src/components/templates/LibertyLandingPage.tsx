@@ -67,7 +67,16 @@ export function LibertyLandingPage() {
               <blockquote>“Security should create confidence — not uncertainty.”</blockquote>
             </div>
             <div className="values-grid" data-testid="home-values-grid">
-              {valuePillars.map((pillar, index) => <ScrollReveal key={pillar.title} delay={index * 0.04}><article><span>{String(index + 1).padStart(2, "0")}</span><h3>{pillar.title}</h3><p>{pillar.copy}</p></article></ScrollReveal>)}
+              {valuePillars.map((pillar, index) => (
+                <ScrollReveal key={pillar.title} className="value-card-reveal" delay={index * 0.04}>
+                  <article className="value-card">
+                    <span className="value-card__monogram" aria-hidden="true">{pillar.title.charAt(0)}</span>
+                    <h3>{pillar.title}</h3>
+                    <p>{pillar.copy}</p>
+                    <span className="value-card__number">{String(index + 1).padStart(2, "0")}</span>
+                  </article>
+                </ScrollReveal>
+              ))}
             </div>
           </Container>
         </section>

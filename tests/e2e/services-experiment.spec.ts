@@ -37,6 +37,25 @@ test("closes the detail with Escape", async ({ page }) => {
   await expect(opener).toBeFocused();
 });
 
+test("keeps the mobile transition panel above its sibling cards", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "single 375px transition-layer check");
+  await page.setViewportSize({ width: 375, height: 812 });
+
+  const panel = page.getByTestId("services-experiment-panel-close-protection");
+  await panel.getByRole("button", { name: /Close Protection/i }).click();
+  await page.waitForTimeout(100);
+  await expect(panel).toHaveCSS("z-index", "2");
+
+  const closeButton = page.getByTestId("services-experiment-close");
+  await expect(closeButton).toBeFocused({ timeout: 4_000 });
+  await closeButton.click();
+  await page.waitForTimeout(100);
+  await expect(panel).toHaveCSS("z-index", "2");
+
+  await expect(page.getByTestId("services-experiment-detail")).toHaveCount(0);
+  await expect(panel).toHaveCSS("z-index", "auto");
+});
+
 test("has no serious or critical accessibility violations", async ({ page }) => {
   const galleryResults = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(galleryResults.violations.filter((violation) => violation.impact === "serious" || violation.impact === "critical")).toEqual([]);
