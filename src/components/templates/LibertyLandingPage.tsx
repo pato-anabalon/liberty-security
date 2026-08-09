@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, Phone, Radio, Shield, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowRight, Mail, Phone, Radio, Shield, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { Container } from "@/components/atoms/Container";
 import { MetaChip } from "@/components/atoms/MetaChip";
@@ -118,7 +118,10 @@ export function LibertyLandingPage() {
                 <MetaChip>{contactContent.eyebrow}</MetaChip>
                 <h2 id="contact-heading">{contactContent.heading}</h2>
                 <p>{contactContent.lead}</p>
-                <a href={contactContent.phoneHref} className="contact-section__phone"><Phone aria-hidden="true" /><span><small>Call Liberty</small>{contactContent.phoneDisplay}</span></a>
+                <div className="contact-section__links">
+                  <a href={contactContent.phoneHref} className="contact-section__phone"><Phone aria-hidden="true" /><span><small>Call Liberty</small>{contactContent.phoneDisplay}</span></a>
+                  <a href={contactContent.emailHref} className="contact-section__email"><Mail aria-hidden="true" /><span><small>Email Liberty</small>{contactContent.emailDisplay}</span></a>
+                </div>
                 <div className="contact-section__confidence"><Shield aria-hidden="true" /><p>Your information is used to respond to this enquiry. Production integrations fail safely if they are not configured.</p></div>
               </div>
               <ContactForm />

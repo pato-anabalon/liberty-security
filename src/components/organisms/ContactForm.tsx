@@ -5,7 +5,7 @@ import { upload } from "@vercel/blob/client";
 import { CheckCircle2, FileUp, LoaderCircle, X } from "lucide-react";
 import { Button } from "@/components/atoms/Button";
 import { TextAreaField, TextField } from "@/components/atoms/TextField";
-import { services, type ServiceId } from "@/lib/content";
+import { contactContent, services, type ServiceId } from "@/lib/content";
 import { trackEvent } from "@/lib/analytics";
 import { ALLOWED_ATTACHMENT_TYPES, contactSchema, MAX_ATTACHMENT_BYTES } from "@/lib/validation";
 
@@ -146,7 +146,7 @@ export function ContactForm() {
         <Button type="submit" variant="gold" showArrow disabled={busy} data-testid="contact-form-submit-button">
           {busy ? <><LoaderCircle className="spin" aria-hidden="true" /> {status === "uploading" ? "Uploading file" : "Sending enquiry"}</> : "Send enquiry"}
         </Button>
-        <p>Prefer to speak? Call <a href="tel:+64271111111">027 111 1111</a>.</p>
+        <p>Prefer direct contact? Call <a href={contactContent.phoneHref}>{contactContent.phoneDisplay}</a> or email <a href={contactContent.emailHref}>{contactContent.emailDisplay}</a>.</p>
       </div>
       {feedback ? (
         <div className={`form-status form-status--${status}`} role={status === "error" ? "alert" : "status"} aria-live="polite" data-testid={`contact-form-${status}-state`}>

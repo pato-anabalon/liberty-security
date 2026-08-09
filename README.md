@@ -59,7 +59,7 @@ On a first visit each production session, a white monochrome preloader waits for
 | `ATTACHMENT_SIGNING_SECRET` | Seven-day private download links | Yes for uploads |
 | `CRON_SECRET` | Authorises 30-day attachment purge | Yes for uploads |
 
-Never commit `.env.local` or secrets. The mock phone number and pending company details must be replaced before launch.
+Never commit `.env.local` or secrets. The verified public phone, email and NZBN live in `src/lib/content.ts`; the remaining legal-entity, address, hours and licence details must be approved before launch.
 
 ## Deployment
 

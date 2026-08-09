@@ -164,10 +164,11 @@ dialog::backdrop { background: rgba(6, 10, 14, .78); backdrop-filter: blur(8px);
 .contact-section__intro .meta-chip { color: var(--gold); }
 .contact-section__intro h2 { max-width: 600px; margin: 1rem 0 1.2rem; font-family: var(--font-display), sans-serif; font-size: clamp(2.8rem, 11vw, 6.2rem); line-height: .92; letter-spacing: -.065em; }
 .contact-section__intro > p { max-width: 520px; color: rgba(242, 239, 232, .69); line-height: 1.7; }
-.contact-section__phone { display: inline-flex; gap: .9rem; align-items: center; margin-top: 1.5rem; color: var(--gold); }
-.contact-section__phone > svg { width: 42px; height: 42px; padding: 10px; border: 1px solid rgba(200, 164, 93, .4); }
-.contact-section__phone span { display: flex; flex-direction: column; font-weight: 800; }
-.contact-section__phone small { color: rgba(242, 239, 232, .6); font-size: .66rem; text-transform: uppercase; }
+.contact-section__links { display: flex; flex-direction: column; align-items: flex-start; gap: .85rem; margin-top: 1.5rem; }
+.contact-section__phone, .contact-section__email { display: inline-flex; gap: .9rem; align-items: center; color: var(--gold); overflow-wrap: anywhere; }
+.contact-section__phone > svg, .contact-section__email > svg { flex: 0 0 auto; width: 42px; height: 42px; padding: 10px; border: 1px solid rgba(200, 164, 93, .4); }
+.contact-section__phone span, .contact-section__email span { display: flex; flex-direction: column; font-weight: 800; }
+.contact-section__phone small, .contact-section__email small { color: rgba(242, 239, 232, .6); font-size: .66rem; text-transform: uppercase; }
 .contact-section__confidence { display: flex; gap: .8rem; margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid var(--line-dark); }
 .contact-section__confidence svg { flex: 0 0 auto; color: var(--gold); }
 .contact-section__confidence p { margin: 0; color: rgba(242, 239, 232, .58); font-size: .78rem; line-height: 1.55; }

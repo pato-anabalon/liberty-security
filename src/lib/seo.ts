@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { contactContent } from "@/lib/content";
 
 export const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000");
 
@@ -39,7 +40,13 @@ export const libertyOrganizationJsonLd = {
   name: seo.name,
   url: siteUrl.toString(),
   logo: new URL("/brand/liberty-security-logo.jpeg", siteUrl).toString(),
-  telephone: "+64271111111",
+  telephone: contactContent.phoneHref.replace("tel:", ""),
+  email: contactContent.emailDisplay,
+  identifier: {
+    "@type": "PropertyValue",
+    propertyID: "NZBN",
+    value: contactContent.nzbnValue,
+  },
   areaServed: { "@type": "AdministrativeArea", name: "Auckland Region" },
   slogan: "People protecting people.",
   description: seo.description,

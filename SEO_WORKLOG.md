@@ -28,7 +28,7 @@ No individual service routes exist by approved commercial decision.
 ## Pending technical work
 
 - Set final domain and verify canonical/OG absolute URLs.
-- Replace the temporary phone number and add verified legal/contact details.
+- Add the remaining verified legal, address and licence details when approved.
 - Add production favicon/logo assets from a transparent master.
 - Validate structured data in Rich Results Test after deployment.
 - Submit sitemap and inspect `/` in Google Search Console.
@@ -37,7 +37,7 @@ No individual service routes exist by approved commercial decision.
 
 ## Pending content/evidence
 
-- Legal entity, NZBN, security licence/credential, approved address, email and hours.
+- Legal entity, security licence/credential, approved address and hours.
 - Founder names, roles, biographies and approved photos.
 - Approved social profile URLs.
 - Approved client logos, testimonials, credentials and case studies.
@@ -80,3 +80,4 @@ Only consider these after search demand, operational capacity and unique evidenc
 - 2026-08-07: replaced the preloader's raster-prone scaled point with a vector circular clip for a cleaner fullscreen handoff. This rendering-only adjustment changes no indexable or commercial content.
 - 2026-08-09: added the isolated `/services-experiment` prototype to test an image-led gallery-to-detail interaction. It remains `noindex, nofollow`, excluded from the sitemap and separate from the landing until visual approval.
 - 2026-08-09: promoted the approved image-led gallery, inline detail interaction and low-poly transition background into the landing `#services` section. Commercial copy, service order, contact preselection, metadata and structured data remain unchanged; the review route stays non-indexable.
+- 2026-08-09: replaced the mock phone and published the supplied email and NZBN across contact surfaces and Organization/LocalBusiness structured data. Legal entity, address, hours and licence evidence remain pending.

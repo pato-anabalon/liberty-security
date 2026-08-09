@@ -16,14 +16,14 @@ One indexable route, `/`, with anchors:
 4. Process — five-step working relationship.
 5. Clients/industries — environments served, without client logos.
 6. About — approved founding story; founder details withheld in production.
-7. Contact — contextual enquiry form and mock phone.
-8. Footer — coverage, pending social channels and privacy notice.
+7. Contact — contextual enquiry form with verified phone and email.
+8. Footer — coverage, NZBN, pending social channels and privacy notice.
 
 FAQ, testimonials, credentials, case studies and team profiles stay hidden until real material exists. There are no plans, prices or individual service pages.
 
 ## Content model
 
-`src/lib/content.ts` is the source for navigation, hero, services, values, process, industries, about, contact and pending social data. Each service includes `id`, `order`, title, eyebrow, summary, detail, outcomes, icon and an image descriptor with source/focal position. Reorder services only by changing `order`. Never bury commercial copy across visual components when it belongs in this model.
+`src/lib/content.ts` is the source for navigation, hero, services, values, process, industries, about, verified contact/NZBN details and pending social data. Each service includes `id`, `order`, title, eyebrow, summary, detail, outcomes, icon and an image descriptor with source/focal position. Reorder services only by changing `order`. Never bury commercial copy across visual components when it belongs in this model.
 
 ## Component architecture
 

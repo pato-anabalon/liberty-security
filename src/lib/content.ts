@@ -176,8 +176,12 @@ export const contactContent = {
   eyebrow: "Start a conversation",
   heading: "Let’s make security feel clear from the start.",
   lead: "Share what you are planning or protecting. We’ll use the details to understand your needs and continue the conversation.",
-  phoneDisplay: "027 111 1111",
-  phoneHref: "tel:+64271111111",
+  phoneDisplay: "+64 21 112 3564",
+  phoneHref: "tel:+64211123564",
+  emailDisplay: "libertysecuritylimited@gmail.com",
+  emailHref: "mailto:libertysecuritylimited@gmail.com",
+  nzbnDisplay: "94-29053833112",
+  nzbnValue: "9429053833112",
 } as const;
 
 export const socialLinks = [
