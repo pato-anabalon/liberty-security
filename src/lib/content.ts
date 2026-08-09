@@ -70,7 +70,7 @@ const serviceList = [
     detail: "Liberty supports hotel operations with personnel who understand the balance between vigilance, discretion and a respectful guest experience.",
     outcomes: ["Guest-aware approach", "Support for hotel procedures", "Professional incident response"],
     icon: "hotel",
-    image: { src: "/services/hotel-security.png", position: "45% center" },
+    image: { src: "/services/hotel-security-v2.png", position: "68% center" },
   },
   {
     id: "construction-security",

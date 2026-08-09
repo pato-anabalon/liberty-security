@@ -47,7 +47,7 @@ The source JPEG is preserved in `docs/logo.jpeg` and copied to `public/brand/lib
 - Tablet motion: responsive eagle image and localized fog.
 - Desktop: four-column services, full navigation, a right-aligned eagle image and localized fog.
 - Large desktop: wider controlled container and more section rhythm.
-- Services experiment: desktop from 1024 px uses eight vertical panels that expand into one inline detail; tablet/mobile use a single-column accordion. The temporary route has no header, preloader, footer or landing sections.
+- Services: desktop from 1024 px uses eight vertical panels that expand into one inline detail; tablet/mobile use a single-column accordion. The landing owns the approved implementation and low-poly background transition; the temporary review route has no header, preloader, footer or other landing sections.
 - Header: `public/brand/liberty-logo.png` is the centred `#top` link. Services and Why Liberty sit to its left; How we work and About us sit to its right; phone and the rounded enquiry CTA occupy the far-right action group. Mobile keeps the centred mark and moves all navigation/actions into the existing overlay menu.
 - Header container: unlike section content, the desktop header uses near-viewport width so its contact actions reach the right edge. The mobile navigation is an opaque, full-height absolute overlay below the fixed header; this avoids the `backdrop-filter` containing-block issue that previously left menu children overflowing over the hero without their background.
 
@@ -65,7 +65,7 @@ Motion types remain separated:
 - Hero content entrance: `HeroContentEntrance` owns one scoped GSAP/SplitText timeline. H1 words use a masked perspective reveal, lead words use a separate lateral wave and the CTAs remain whole. It waits for `liberty:preloader-complete`, restores split markup during cleanup, clears inline transform styles to preserve CTA hovers and skips motion entirely for reduced-motion users.
 - Once reveals: `ScrollReveal` uses one-shot viewport entrance timelines.
 - Hover: CSS-owned and not overwritten by scroll timelines.
-- Services experiment: `ServicesExperiment` owns one scoped, click-driven GSAP Flip transition. Opening is intentionally staged: the selected image holds its accordion presentation while the gallery clears, then shifts right as its left transparency mask, left-entering detail card and bottom-right back control resolve together. Closing reverses those roles before restoring the accordion. It never uses ScrollTrigger or shares a timeline with the landing; reduced motion changes state instantly.
+- Services gallery: `ServicesExperiment` owns one scoped, click-driven GSAP Flip transition on both the landing and temporary review route. Opening is intentionally staged: the selected image holds its accordion presentation while the gallery clears, then shifts right as its left transparency mask, left-entering detail card and bottom-right back control resolve together. Closing reverses those roles before restoring the accordion; fixed desktop grid columns preserve the selected service's slot while Flip temporarily positions it absolutely. It never uses ScrollTrigger or shares a timeline with other landing motion; reduced motion changes state instantly.
 
 Reduced motion removes the preloader, fog drift and reveal transforms while retaining every message, CTA and the complete static eagle photograph.
 
@@ -102,13 +102,10 @@ Reduced motion removes the preloader, fog drift and reveal transforms while reta
 | `liberty-motion-static-fallback` | Eagle photograph; remains static for reduced motion |
 | `home-hero-section` | Hero |
 | `hero-primary-cta`, `hero-secondary-cta` | Hero conversion paths |
-| `home-services-section`, `home-services-card-grid` | Service section/grid |
-| `services-card-{service-id}` | Repeated service card |
-| `services-card-{service-id}-details` | Service dialog opener |
-| `service-details-dialog`, `service-dialog-contact-cta` | Dialog and CTA |
+| `home-services-section`, `home-services-card-grid`, `home-services-pattern` | Landing service section, gallery and background |
 | `services-experiment-section`, `services-experiment-gallery`, `services-experiment-pattern` | Temporary services prototype surfaces |
-| `services-experiment-panel-{service-id}` | Temporary service panel |
-| `services-experiment-detail`, `services-experiment-close`, `services-experiment-contact-cta` | Temporary expanded detail controls |
+| `services-experiment-panel-{service-id}` | Shared landing/review service panel |
+| `services-experiment-detail`, `services-experiment-close`, `services-experiment-contact-cta` | Shared expanded detail controls |
 | `home-why-liberty-section`, `home-values-grid` | Values section |
 | `home-process-section`, `home-process-step-list` | Process |
 | `home-clients-section`, `home-industries-list` | Industries |

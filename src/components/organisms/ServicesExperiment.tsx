@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { flushSync } from "react-dom";
 import Image from "next/image";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { Flip } from "gsap/Flip";
 import { useGSAP } from "@gsap/react";
 import { TrackedCta } from "@/components/molecules/TrackedCta";
+import { trackEvent } from "@/lib/analytics";
 import { services, type ServiceId } from "@/lib/content";
 import styles from "./ServicesExperiment.module.css";
 
@@ -17,7 +18,15 @@ const desktopQuery = "(min-width: 1024px)";
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 const detailImageMask = "linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.14) 14%, rgba(0, 0, 0, 0.72) 31%, #000 47%)";
 
-export function ServicesExperiment() {
+type ServicesExperimentProps = {
+  contactHref?: string;
+  contactEventName?: string;
+};
+
+export function ServicesExperiment({
+  contactHref = "/#contact",
+  contactEventName = "services_experiment_contact",
+}: ServicesExperimentProps = {}) {
   const rootRef = useRef<HTMLDivElement>(null);
   const openerIdRef = useRef<ServiceId | null>(null);
   const [selectedId, setSelectedId] = useState<ServiceId | null>(null);
@@ -32,6 +41,7 @@ export function ServicesExperiment() {
       if (!selectedPanel) return;
 
       openerIdRef.current = serviceId;
+      trackEvent("service_dialog_open", { service: serviceId, source_path: window.location.pathname });
       const reduceMotion = window.matchMedia(reducedMotionQuery).matches;
       const isDesktop = window.matchMedia(desktopQuery).matches;
       const otherPanels = Array.from(root.querySelectorAll<HTMLElement>("[data-service-panel]"))
@@ -216,6 +226,7 @@ export function ServicesExperiment() {
             <article
               key={service.id}
               className={styles.panel}
+              style={{ "--service-column": service.order } as CSSProperties}
               data-active={isSelected ? "true" : "false"}
               data-service-id={service.id}
               data-service-panel
@@ -265,11 +276,17 @@ export function ServicesExperiment() {
                         <li key={outcome}><Check aria-hidden="true" size={16} />{outcome}</li>
                       ))}
                     </ul>
-                    <div data-service-detail-part>
+                    <div className={styles.detailCta} data-service-detail-part>
                       <TrackedCta
-                        href="/#contact"
-                        eventName="services_experiment_contact"
+                        href={contactHref}
+                        eventName={contactEventName}
                         service={service.id}
+                        onClick={() => {
+                          window.dispatchEvent(new CustomEvent("liberty:select-service", {
+                            detail: { service: service.id },
+                          }));
+                          closeService();
+                        }}
                         data-testid="services-experiment-contact-cta"
                       >
                         Discuss this service

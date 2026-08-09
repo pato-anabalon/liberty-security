@@ -1,4 +1,5 @@
 import { ArrowDown, ArrowRight, Phone, Radio, Shield, Sparkles } from "lucide-react";
+import Image from "next/image";
 import { Container } from "@/components/atoms/Container";
 import { MetaChip } from "@/components/atoms/MetaChip";
 import { HeroContentEntrance } from "@/components/molecules/HeroContentEntrance";
@@ -13,7 +14,7 @@ import { HeroEagleFog } from "@/components/organisms/HeroEagleFog";
 import { HeroEagleImage } from "@/components/organisms/HeroEagleImage";
 import { Preloader } from "@/components/organisms/Preloader";
 import { PrivacyDialog } from "@/components/organisms/PrivacyDialog";
-import { ServiceExplorer } from "@/components/organisms/ServiceExplorer";
+import { ServicesExperiment } from "@/components/organisms/ServicesExperiment";
 import { aboutContent, contactContent, heroContent, industries, processSteps, valuePillars } from "@/lib/content";
 
 export function LibertyLandingPage() {
@@ -42,9 +43,20 @@ export function LibertyLandingPage() {
         </section>
 
         <section id="services" className="services-section section-surface section-surface--cream" data-testid="home-services-section" aria-labelledby="services-heading">
-          <Container>
+          <div className="services-section__pattern" data-testid="home-services-pattern" aria-hidden="true">
+            <Image
+              src="/services/services-low-poly-background.png"
+              alt=""
+              fill
+              sizes="100vw"
+              className="services-section__pattern-image"
+            />
+          </div>
+          <Container className="services-section__inner">
             <ScrollReveal><SectionHeading id="services-heading" eyebrow="What we protect" heading="Security shaped around the situation — not a generic shift." copy="Start with the service closest to your needs. We’ll clarify the details together before proposing the right team and approach." /></ScrollReveal>
-            <ServiceExplorer />
+            <div data-testid="home-services-card-grid">
+              <ServicesExperiment contactHref="#contact" contactEventName="service_detail_contact" />
+            </div>
           </Container>
         </section>
 

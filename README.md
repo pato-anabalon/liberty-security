@@ -36,9 +36,9 @@ npm run verify       # lint + typecheck + unit tests + build
 
 ## Public route and sections
 
-Only `/` is indexable. It contains `hero`, `services`, `why-liberty`, `process`, `clients`, `about` and `contact`. The centered header mark links to `#top`, with two navigation labels on each side and contact actions at the right edge on desktop. The hero keeps its commercial copy, a preloader-coordinated content entrance and two rounded conversion paths without a separate proof panel. Service detail is presented in a dialog; there are no indexable service or plan routes. `/api/*` contains operational handlers and is disallowed in robots.
+Only `/` is indexable. It contains `hero`, `services`, `why-liberty`, `process`, `clients`, `about` and `contact`. The centered header mark links to `#top`, with two navigation labels on each side and contact actions at the right edge on desktop. The hero keeps its commercial copy, a preloader-coordinated content entrance and two rounded conversion paths without a separate proof panel. Services use an image-led accordion that expands inline into the selected service detail; there are no indexable service or plan routes. `/api/*` contains operational handlers and is disallowed in robots.
 
-`/services-experiment` is a temporary, `noindex` visual prototype containing only the services section. Desktop uses an eight-panel gallery-to-detail transition; tablet and mobile use an inline accordion. It is intentionally excluded from the sitemap and does not replace or change the landing implementation.
+`/services-experiment` remains a temporary, `noindex` review surface for the same services interaction now used on the landing. It is intentionally excluded from the sitemap.
 
 Commercial copy lives in `src/lib/content.ts`; metadata and structured data live in `src/lib/seo.ts`.
 

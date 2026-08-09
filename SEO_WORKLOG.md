@@ -23,7 +23,7 @@ The technical foundation is implemented for one Auckland-focused landing page. `
 
 No individual service routes exist by approved commercial decision.
 
-`/services-experiment` is a temporary visual prototype with `noindex, nofollow`, a self-referencing canonical and no sitemap entry. It is not an SEO landing page or an approved individual service route.
+`/services-experiment` is a temporary review surface for the approved landing services interaction, with `noindex, nofollow`, a self-referencing canonical and no sitemap entry. It is not an SEO landing page or an approved individual service route.
 
 ## Pending technical work
 
@@ -79,3 +79,4 @@ Only consider these after search demand, operational capacity and unique evidenc
 - 2026-08-07: corrected the preloader's server-rendered state so its branding remains visible before JavaScript hydration on slow connections. The correction changes no indexable copy, metadata, structured data or commercial claims.
 - 2026-08-07: replaced the preloader's raster-prone scaled point with a vector circular clip for a cleaner fullscreen handoff. This rendering-only adjustment changes no indexable or commercial content.
 - 2026-08-09: added the isolated `/services-experiment` prototype to test an image-led gallery-to-detail interaction. It remains `noindex, nofollow`, excluded from the sitemap and separate from the landing until visual approval.
+- 2026-08-09: promoted the approved image-led gallery, inline detail interaction and low-poly transition background into the landing `#services` section. Commercial copy, service order, contact preselection, metadata and structured data remain unchanged; the review route stays non-indexable.

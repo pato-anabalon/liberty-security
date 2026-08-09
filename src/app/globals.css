@@ -90,7 +90,12 @@ img, svg { display: block; }
 .hero-section__secondary-cta > span { display: inline-flex; align-items: center; gap: .65rem; white-space: nowrap; }
 .hero-section__scroll { display: none; }
 
+.services-section { isolation: isolate; }
+.services-section__inner { position: relative; z-index: 2; }
 .services-section .section-heading { margin-bottom: 3rem; }
+.services-section__pattern { position: absolute; z-index: 0; right: 0; bottom: 0; left: 0; height: clamp(34rem, 68vw, 62rem); opacity: .82; pointer-events: none; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, .08) 14%, #000 58%); mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, .08) 14%, #000 58%); }
+.services-section__pattern::after { position: absolute; inset: 0; content: ""; background: linear-gradient(180deg, var(--cream) 0%, rgba(242, 239, 232, .72) 24%, transparent 62%); }
+.services-section__pattern-image { object-fit: cover; object-position: center bottom; }
 .services-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
 .service-card { min-height: 310px; display: flex; flex-direction: column; padding: 1.5rem; border: 1px solid var(--line-light); background: rgba(255, 253, 248, .84); box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset; transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
 .service-card:hover { transform: translateY(-6px); border-color: rgba(159, 123, 63, .55); box-shadow: var(--shadow); }

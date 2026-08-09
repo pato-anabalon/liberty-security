@@ -53,10 +53,10 @@ test("renders the commercial story and service detail", async ({ page }) => {
   await expect(page.getByTestId("home-hero-section")).toBeVisible();
   await expect(page.getByRole("heading", { level: 1, name: /People protecting people/i })).toBeVisible();
   await expect(page.getByTestId("home-services-card-grid").locator("article")).toHaveCount(8);
-  await page.getByTestId("services-card-event-security-details").click();
-  await expect(page.getByTestId("service-details-dialog")).toBeVisible();
-  await expect(page.getByTestId("service-details-dialog").getByRole("heading", { name: "Event Security", exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "Close service details" }).click();
+  await page.getByTestId("services-experiment-panel-event-security").getByRole("button").click();
+  await expect(page.getByTestId("services-experiment-detail")).toBeVisible();
+  await expect(page.getByTestId("services-experiment-detail").getByRole("heading", { name: "Event Security", exact: true })).toBeVisible();
+  await page.getByTestId("services-experiment-close").click();
 });
 
 test("connects first and repeat visits to the eagle hero with one release event", async ({ browser }) => {
