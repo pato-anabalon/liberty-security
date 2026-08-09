@@ -1,0 +1,60 @@
+.page {
+  min-height: 100svh;
+  background: var(--cream);
+}
+
+.section {
+  position: relative;
+  min-height: 100svh;
+  overflow: clip;
+  padding: 5.5rem 0 9rem;
+  isolation: isolate;
+  background: var(--cream);
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+}
+
+.inner :global(.section-heading) {
+  margin-bottom: 3rem;
+}
+
+.pattern {
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: clamp(34rem, 68vw, 62rem);
+  opacity: 0.82;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.08) 14%, #000 58%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.08) 14%, #000 58%);
+}
+
+.pattern::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(180deg, var(--cream) 0%, rgba(242, 239, 232, 0.72) 24%, transparent 62%);
+}
+
+.patternImage {
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+@media (min-width: 600px) {
+  .section {
+    padding: 7rem 0 11rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .section {
+    padding-top: 9rem;
+    padding-bottom: 13rem;
+  }
+}

@@ -1,0 +1,85 @@
+.root {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  align-items: center;
+  justify-items: end;
+  overflow: hidden;
+  padding: 6rem max(1rem, calc((100vw - 1320px) / 2)) 2rem;
+  pointer-events: none;
+}
+
+.visual {
+  position: relative;
+  width: min(50vw, 736px);
+  aspect-ratio: 736 / 774;
+}
+
+.fog {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.fogBack {
+  inset: 8% -16% 48% 4%;
+  background:
+    radial-gradient(ellipse at 28% 54%, rgba(242, 239, 232, 0.36), transparent 42%),
+    radial-gradient(ellipse at 70% 42%, rgba(200, 164, 93, 0.18), transparent 48%),
+    radial-gradient(ellipse at center, rgba(242, 239, 232, 0.18), transparent 72%);
+  filter: blur(31px);
+}
+
+.fogMiddle {
+  inset: 38% -12% 20% -8%;
+  background:
+    radial-gradient(ellipse at 30% 48%, rgba(200, 164, 93, 0.21), transparent 44%),
+    radial-gradient(ellipse at 68% 56%, rgba(242, 239, 232, 0.34), transparent 47%),
+    radial-gradient(ellipse at center, rgba(242, 239, 232, 0.17), transparent 73%);
+  filter: blur(24px);
+}
+
+.fogFront {
+  inset: 62% -18% -3% 8%;
+  background:
+    radial-gradient(ellipse at 22% 58%, rgba(242, 239, 232, 0.28), transparent 40%),
+    radial-gradient(ellipse at 64% 42%, rgba(200, 164, 93, 0.18), transparent 45%),
+    radial-gradient(ellipse at center, rgba(242, 239, 232, 0.16), transparent 75%);
+  filter: blur(34px);
+}
+
+@media (max-width: 767px) {
+  .root {
+    align-items: start;
+    padding: 7rem 0 0;
+  }
+
+  .visual {
+    width: min(92vw, 570px);
+    margin-right: -24vw;
+  }
+
+  .fogBack,
+  .fogMiddle,
+  .fogFront {
+    filter: blur(24px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .visual {
+    width: min(62vw, 650px);
+    margin-right: -10vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fog {
+    display: none;
+  }
+}

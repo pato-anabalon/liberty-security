@@ -23,30 +23,33 @@ FAQ, testimonials, credentials, case studies and team profiles stay hidden until
 
 ## Content model
 
-`src/lib/content.ts` is the source for navigation, hero, services, values, process, industries, about, contact and pending social data. Each service includes `id`, `order`, title, eyebrow, summary, detail, outcomes and icon. Reorder services only by changing `order`. Never bury commercial copy across visual components when it belongs in this model.
+`src/lib/content.ts` is the source for navigation, hero, services, values, process, industries, about, contact and pending social data. Each service includes `id`, `order`, title, eyebrow, summary, detail, outcomes, icon and an image descriptor with source/focal position. Reorder services only by changing `order`. Never bury commercial copy across visual components when it belongs in this model.
 
 ## Component architecture
 
 - `atoms`: Button, Container, Logo, MetaChip, TextField.
-- `molecules`: SectionHeading, ScrollReveal, ServiceCard, TrackedCta, PrivacyButton.
-- `organisms`: Header, Footer, ServiceExplorer, Preloader, LibertyMotionCanvas, MotionDirector, ContactForm, PrivacyDialog, AnalyticsConsent.
+- `molecules`: SectionHeading, ScrollReveal, HeroContentEntrance, ServiceCard, TrackedCta, PrivacyButton.
+- `organisms`: Header, Footer, ServiceExplorer, ServicesExperiment, Preloader, HeroEagleImage, HeroLiquidBackground, HeroEagleFog, ContactForm, PrivacyDialog, AnalyticsConsent.
 - `templates`: LibertyLandingPage.
 
 Pages and metadata stay server-rendered. State, browser APIs, dialogs, analytics, forms and motion are narrow Client Component islands.
 
 ## Visual system
 
-Tokens: Black `#2B2B2B`, Cream `#F2EFE8`, Liberty Gold `#C8A45D`, Liberty Blue `#1E2A38`, Secondary Cream `#F3E9D8`, Secondary Blue `#3C507D`. Sora is the display face; Manrope is the body face. Surfaces alternate cream, blue, black and gold. Buttons, text links, chips and informational labels remain visually distinct.
+Tokens: Black `#000000`, Cream `#F2EFE8`, Liberty Gold `#C8A45D`, Liberty Blue `#1E2A38`, Secondary Cream `#F3E9D8`, Secondary Blue `#3C507D`. Sora is the display face; Manrope is the body face. Surfaces alternate cream, blue, black and gold. Buttons, text links, chips and informational labels remain visually distinct.
 
-The source JPEG is preserved in `docs/logo.jpeg` and copied to `public/brand/liberty-security-logo.jpeg`. The header uses a compact crop plus a text wordmark because a transparent production logo is still pending.
+The source JPEG is preserved in `docs/logo.jpeg` and copied to `public/brand/liberty-security-logo.jpeg` for the footer. The header and preloader use the dedicated transparent `public/brand/liberty-logo.png` mark.
 
 ## Responsive decisions
 
-- Mobile: stacked hero actions, overlay navigation, one-column cards, 1,600 particles, DPR capped at 1 and approximately 30 fps.
+- Mobile: stacked hero actions, overlay navigation, one-column cards, a right-cropped eagle image and simplified localized fog.
 - Tablet: two-column services, two-column forms, revised process layout.
-- Tablet motion: 3,800 particles with an intermediate eagle scale and composition.
-- Desktop: four-column services, full navigation, 6,200 particles, DPR capped at 1.5 and local pointer interaction.
+- Tablet motion: responsive eagle image and localized fog.
+- Desktop: four-column services, full navigation, a right-aligned eagle image and localized fog.
 - Large desktop: wider controlled container and more section rhythm.
+- Services experiment: desktop from 1024 px uses eight vertical panels that expand into one inline detail; tablet/mobile use a single-column accordion. The temporary route has no header, preloader, footer or landing sections.
+- Header: `public/brand/liberty-logo.png` is the centred `#top` link. Services and Why Liberty sit to its left; How we work and About us sit to its right; phone and the rounded enquiry CTA occupy the far-right action group. Mobile keeps the centred mark and moves all navigation/actions into the existing overlay menu.
+- Header container: unlike section content, the desktop header uses near-viewport width so its contact actions reach the right edge. The mobile navigation is an opaque, full-height absolute overlay below the fixed header; this avoids the `backdrop-filter` containing-block issue that previously left menu children overflowing over the hero without their background.
 
 No heavy video is rendered. Layout uses `overflow-x: clip`; visual QA must still test 375, 768, 1024 and 1440 widths.
 
@@ -54,13 +57,17 @@ No heavy video is rendered. Layout uses `overflow-x: clip`; visual QA must still
 
 Motion types remain separated:
 
-- Preloader: once per session, own labelled GSAP timeline, skip control and 2.8-second hard timeout. Two wing-shaped wipes release the hero particle formation event.
-- Scroll story: top-level ScrollTriggers in `MotionDirector` emit section-local scene progress.
-- WebGL: `LibertyMotionCanvas` uses a custom round-particle shader and morphs a persistent point field through eagle, eight service clusters, shield, five-step path, Auckland-inspired field, wings and final shield. The hero eagle reserves 50% of particles for its contour, 34% for internal mass and 16% for a blue/gold depth field. Cursor input creates bounded local repulsion and a maximum subtle 3D tilt; it never translates the complete cloud.
+- Preloader: once per session, own labelled GSAP timeline and no Skip control. A white, centred logo/wordmark composition fills the outlined `— SECURITY —` indicator to 92% while logo, font and hero-image readiness resolve within a 2.2-second timeout measured from timeline start. The final fill contracts into a black point rendered as a vector circular clip on a viewport-sized layer; `liberty:preloader-complete` fires only after the radius reaches the farthest corner. It does not own any hero animation.
+- Navbar entrance: `Header` owns a scoped GSAP timeline that descends from above after `liberty:preloader-complete`, clears its inline transform styles on completion and remains static for reduced-motion users. Mobile menu state and transitions remain CSS/React-owned.
+- Hero layers: `HeroEagleImage` owns `public/brand/eagle.jpg` and its eye-centred iris/depth intro at the back; `HeroEagleFog` keeps three localized fog layers over the eagle; content remains above both.
+- Reserved experiment: `HeroLiquidBackground` and its styles remain available but are not mounted. The mist treatment was removed from the hero pending a better section placement.
+- Hero fog: `HeroEagleFog` owns only the localized fog and its motion. Its scoped `useGSAP` lifecycle animates transforms and opacity, with slightly stronger desktop travel and slower compact motion. It is autoplay motion, not scrub motion.
+- Hero content entrance: `HeroContentEntrance` owns one scoped GSAP/SplitText timeline. H1 words use a masked perspective reveal, lead words use a separate lateral wave and the CTAs remain whole. It waits for `liberty:preloader-complete`, restores split markup during cleanup, clears inline transform styles to preserve CTA hovers and skips motion entirely for reduced-motion users.
 - Once reveals: `ScrollReveal` uses one-shot viewport entrance timelines.
 - Hover: CSS-owned and not overwritten by scroll timelines.
+- Services experiment: `ServicesExperiment` owns one scoped, click-driven GSAP Flip transition. Opening is intentionally staged: the selected image holds its accordion presentation while the gallery clears, then shifts right as its left transparency mask, left-entering detail card and bottom-right back control resolve together. Closing reverses those roles before restoring the accordion. It never uses ScrollTrigger or shares a timeline with the landing; reduced motion changes state instantly.
 
-Reduced motion removes the preloader, WebGL canvas and reveal transforms while retaining every message and CTA. It shows the complete static eagle artwork. WebGL failure uses the same static fallback.
+Reduced motion removes the preloader, fog drift and reveal transforms while retaining every message, CTA and the complete static eagle photograph.
 
 ## Integrations
 
@@ -76,6 +83,7 @@ Reduced motion removes the preloader, WebGL canvas and reveal transforms while r
 | Route | Purpose | Index |
 | --- | --- | --- |
 | `/` | Commercial landing | Index/follow |
+| `/services-experiment` | Temporary services interaction prototype | Noindex/nofollow; excluded from sitemap |
 | `/api/contact` | Enquiry delivery | Disallowed |
 | `/api/upload` | Blob upload token | Disallowed |
 | `/api/attachments/[token]` | Expiring private download | Disallowed |
@@ -88,15 +96,19 @@ Reduced motion removes the preloader, WebGL canvas and reveal transforms while r
 | `site-navigation` | Header navigation |
 | `mobile-navigation-toggle` | Mobile menu state |
 | `header-contact-cta` | Header conversion CTA |
-| `liberty-preloader`, `liberty-preloader-skip` | Intro and escape control |
-| `liberty-motion-canvas` | Persistent visual layer |
-| `liberty-motion-static-fallback` | Reduced-motion/WebGL-failure eagle |
+| `liberty-preloader` | First-session intro and hero release boundary |
+| `hero-eagle-image` | Eagle photograph at the back of the hero stack |
+| `hero-eagle-fog` | Localized fog above the eagle position |
+| `liberty-motion-static-fallback` | Eagle photograph; remains static for reduced motion |
 | `home-hero-section` | Hero |
 | `hero-primary-cta`, `hero-secondary-cta` | Hero conversion paths |
 | `home-services-section`, `home-services-card-grid` | Service section/grid |
 | `services-card-{service-id}` | Repeated service card |
 | `services-card-{service-id}-details` | Service dialog opener |
 | `service-details-dialog`, `service-dialog-contact-cta` | Dialog and CTA |
+| `services-experiment-section`, `services-experiment-gallery`, `services-experiment-pattern` | Temporary services prototype surfaces |
+| `services-experiment-panel-{service-id}` | Temporary service panel |
+| `services-experiment-detail`, `services-experiment-close`, `services-experiment-contact-cta` | Temporary expanded detail controls |
 | `home-why-liberty-section`, `home-values-grid` | Values section |
 | `home-process-section`, `home-process-step-list` | Process |
 | `home-clients-section`, `home-industries-list` | Industries |
@@ -115,7 +127,7 @@ Reduced motion removes the preloader, WebGL canvas and reveal transforms while r
 - Keep Event Security first unless commercial priority changes.
 - Do not claim 24/7 availability, national coverage, clients, reviews, metrics, licences, awards or results.
 - CCTV means on-site CCTV surveillance, not remote monitoring.
-- Keep scrub, once, hover and preloader behaviours isolated.
+- Keep preloader, hero fog, once and hover behaviours isolated.
 - Do not load analytics before consent.
 - Never publish development fixtures or fake form success in production.
 - Do not rename stable selectors or change out-of-scope copy, motion, hover or metadata incidentally.
@@ -128,3 +140,34 @@ Reduced motion removes the preloader, WebGL canvas and reveal transforms while r
 - Visual QA: 375, 768, 1024 and 1440 px each report zero horizontal overflow and zero page/console errors.
 - Local enquiry path is verified browser → `/api/contact` → simulated response → accessible success state. Resend, Blob and Upstash require real credentials before their external boundaries can be verified.
 - `npm audit --omit=dev` currently reports upstream transitive advisories in Next.js PostCSS/Sharp; no compatible automatic fix is available.
+
+## Motion verification update — 2026-08-05
+
+- Replaced the hero particle cloud with the then-current shared line-mesh graph; preloader, scroll scene events, local pointer deformation, reduced-motion fallback and stable selectors remained intact at that point.
+- ESLint, strict TypeScript, ten Vitest checks and the production build pass.
+- Playwright: thirteen passing checks and one expected desktop skip, including the clean-session preloader handoff and reduced-motion fallback.
+- Production visual QA at 375, 768, 1024 and 1440 px reports zero horizontal overflow and zero page/console errors; the hero render was inspected at all four widths.
+
+## Hero fog update — 2026-08-07
+
+- Replaced the visible hero line eagle with `public/brand/eagle.jpg` on an absolute-black hero and isolated the photograph, mist and localized fog into separate components.
+- Added the reference-inspired `HeroLiquidBackground` between the eagle photograph and localized fog without adding another canvas/WebGL renderer.
+- Removed `HeroLiquidBackground` from the rendered hero after visual review; retained the isolated component for possible reuse in another section.
+- Removed the persistent WebGL line story, its motion director and Three.js dependency after visual review. No eagle line layer remains behind later sections.
+- Increased the localized fog contrast and layer opacity while preserving its slow movement, right-side placement, three-layer structure and reduced-motion fallback.
+- Removed the separate `Our standard` proof panel from the hero and softened only the two hero CTAs with a moderate corner radius. Their copy, destinations, analytics events, hover behaviour and stable selectors remain unchanged.
+- Kept the secondary CTA label and down arrow on one line, then added a preloader-coordinated staggered entrance for the hero eyebrow, heading, lead and actions. The animation is isolated from fog, scroll reveals and hover behaviour.
+- Refined the hero entrance so the H1 and lead animate word by word with distinct treatments while CTAs remain intact. Added an independent eye-centred iris and depth settle for the eagle image; both timelines share only the preloader release signal. The iris uses a progressive fade and symmetric easing so the visible eagle develops continuously instead of appearing after a wipe crosses the JPEG's black margins. The experimental gold light sweep was removed after review.
+- Reduced motion keeps the eagle photograph static and removes the fog layers. Stable selectors, preloader, once reveals, hovers, commercial copy and metadata remain unchanged.
+- ESLint, strict TypeScript, eight Vitest checks and the production build pass after removing the line subsystem. Playwright was intentionally not run for this revision. The build requires network access while Manrope and Sora remain sourced through `next/font` Google Fonts.
+
+## Preloader transition update — 2026-08-07
+
+- Replaced the particles, wing wipe, legacy logo treatment and Skip control with the responsive white logo/`LIBERTY`/`— SECURITY —` composition.
+- The fill advances to 92% while logo, fonts and the hero image resolve, then contracts into a black point whose scale is calculated against the farthest viewport corner.
+- The public session key, `liberty-preloader` selector and `liberty:preloader-complete` event remain stable. The event is emitted once only after the screen is fully black; navbar, eagle and hero-copy timelines remain unchanged.
+- Scroll is locked only while the overlay exists and restored during every completion or cleanup path. Reduced motion, seen sessions and restricted storage bypass the intro.
+- The server-rendered state is intentionally visible without JavaScript: logo and `LIBERTY` render normally, `— SECURITY —` starts in outline and the expansion point starts at scale zero. GSAP animates transforms and the fill after hydration but never owns the composition's initial visibility, preventing a blank white screen on throttled connections.
+- Production preserves the once-per-session key. Development intentionally ignores an existing seen value on full page loads so the fill, contraction and circular handoff remain reviewable on `localhost`; reduced motion and unavailable storage still bypass the intro. `data-preloader-phase` exposes `checking`, `playing` or `hidden` for manual DevTools diagnosis.
+- The circular handoff animates `clip-path: circle()` on one fixed black layer instead of scaling a 14 px DOM circle. This keeps the expanding edge crisp at large desktop resolutions without changing its origin, timing or coverage calculation.
+- ESLint, strict TypeScript, eighteen Vitest checks and the production build pass. The slow-hydration blank state was found through manual Chrome throttling after automated browser checks missed it; do not use Playwright as visual acceptance for this preloader. Further visual validation follows direct user feedback.

@@ -1,0 +1,140 @@
+.root {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 72%, rgba(30, 42, 56, 0.11), transparent 42%),
+    radial-gradient(circle at 76% 34%, rgba(60, 80, 125, 0.2), transparent 42%);
+  pointer-events: none;
+}
+
+.anchor {
+  position: absolute;
+  display: block;
+  transform-origin: center;
+}
+
+.anchorBack {
+  top: -64%;
+  left: -25%;
+  width: 108%;
+  height: 210%;
+  transform: rotate(-24deg);
+}
+
+.anchorCentre {
+  top: -57%;
+  left: -16%;
+  width: 62%;
+  height: 190%;
+  transform: rotate(-35deg);
+}
+
+.anchorEdge {
+  top: -44%;
+  left: 40%;
+  width: 56%;
+  height: 178%;
+  transform: rotate(-18deg);
+}
+
+.anchorGold {
+  left: 16%;
+  bottom: -72%;
+  width: 84%;
+  height: 152%;
+  transform: rotate(-40deg);
+}
+
+.ribbon {
+  position: absolute;
+  inset: -8%;
+  display: block;
+  border-radius: 48%;
+  mix-blend-mode: screen;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.ribbonBack {
+  background: linear-gradient(90deg, transparent 5%, rgba(30, 42, 56, 0.1) 20%, rgba(60, 80, 125, 0.52) 45%, rgba(129, 173, 221, 0.36) 56%, rgba(242, 239, 232, 0.1) 62%, transparent 86%);
+  filter: blur(36px);
+}
+
+.ribbonCentre {
+  background: linear-gradient(90deg, transparent 3%, rgba(60, 80, 125, 0.08) 18%, rgba(91, 129, 177, 0.5) 46%, rgba(209, 224, 235, 0.26) 55%, rgba(60, 80, 125, 0.17) 69%, transparent 92%);
+  filter: blur(25px);
+}
+
+.ribbonEdge {
+  background: linear-gradient(90deg, transparent 7%, rgba(30, 42, 56, 0.08) 23%, rgba(120, 166, 215, 0.45) 47%, rgba(242, 239, 232, 0.21) 55%, rgba(60, 80, 125, 0.15) 70%, transparent 91%);
+  filter: blur(20px);
+}
+
+.ribbonGold {
+  background: linear-gradient(90deg, transparent 8%, rgba(118, 85, 31, 0.05) 24%, rgba(200, 164, 93, 0.18) 48%, rgba(242, 239, 232, 0.08) 58%, transparent 88%);
+  filter: blur(40px);
+}
+
+.noise,
+.scrim {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.noise {
+  z-index: 2;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.72'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: soft-light;
+}
+
+.scrim {
+  z-index: 3;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.42) 30%, rgba(0, 0, 0, 0.1) 64%, rgba(0, 0, 0, 0.18) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 42%, rgba(0, 0, 0, 0.38));
+}
+
+@media (max-width: 767px) {
+  .root {
+    background:
+      radial-gradient(circle at 12% 76%, rgba(30, 42, 56, 0.09), transparent 46%),
+      radial-gradient(circle at 82% 29%, rgba(60, 80, 125, 0.18), transparent 46%);
+  }
+
+  .anchorBack {
+    left: -72%;
+    width: 190%;
+  }
+
+  .anchorCentre {
+    left: -32%;
+    width: 105%;
+  }
+
+  .anchorEdge {
+    display: none;
+  }
+
+  .anchorGold {
+    left: -12%;
+    width: 132%;
+  }
+
+  .scrim {
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.55) 48%, rgba(0, 0, 0, 0.24) 100%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.16), transparent 36%, rgba(0, 0, 0, 0.48));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ribbon {
+    transform: none;
+    will-change: auto;
+  }
+}

@@ -17,13 +17,17 @@ export type Service = {
   detail: string;
   outcomes: readonly string[];
   icon: "calendar" | "user" | "hotel" | "hard-hat" | "wine" | "key" | "shield" | "camera";
+  image: {
+    src: string;
+    position: string;
+  };
 };
 
 export const navigation = [
   { label: "Services", href: "#services" },
   { label: "Why Liberty", href: "#why-liberty" },
-  { label: "How it works", href: "#process" },
-  { label: "About", href: "#about" },
+  { label: "How we work", href: "#process" },
+  { label: "About us", href: "#about" },
 ] as const;
 
 export const heroContent = {
@@ -32,7 +36,6 @@ export const heroContent = {
   lead: "Professional security built around experienced people, clear communication and a genuine commitment to every assignment.",
   primaryCta: "Discuss your security needs",
   secondaryCta: "Explore our services",
-  proof: ["Proactive communication", "Tailored planning", "Hands-on leadership"],
 } as const;
 
 const serviceList = [
@@ -45,6 +48,7 @@ const serviceList = [
     detail: "From early planning through pack-down, Liberty works with organisers and venue teams to understand the environment, anticipate pressure points and maintain clear communication on the day.",
     outcomes: ["A plan shaped around your event", "Professional public-facing presence", "Clear coordination with your team"],
     icon: "calendar",
+    image: { src: "/services/event-security.png", position: "54% center" },
   },
   {
     id: "close-protection",
@@ -55,6 +59,7 @@ const serviceList = [
     detail: "A discreet service planned around the individual, their movements and the environments they need to enter, without adding unnecessary friction to the day.",
     outcomes: ["Context-led risk planning", "Discreet professional conduct", "Responsive communication"],
     icon: "user",
+    image: { src: "/services/close-protection-v2.png", position: "53% center" },
   },
   {
     id: "hotel-security",
@@ -65,6 +70,7 @@ const serviceList = [
     detail: "Liberty supports hotel operations with personnel who understand the balance between vigilance, discretion and a respectful guest experience.",
     outcomes: ["Guest-aware approach", "Support for hotel procedures", "Professional incident response"],
     icon: "hotel",
+    image: { src: "/services/hotel-security.png", position: "45% center" },
   },
   {
     id: "construction-security",
@@ -75,6 +81,7 @@ const serviceList = [
     detail: "We work to the needs of each site, helping monitor access, maintain an observable presence and communicate issues promptly to the people responsible.",
     outcomes: ["Site-specific briefing", "Access and perimeter awareness", "Clear issue escalation"],
     icon: "hard-hat",
+    image: { src: "/services/constructions-site-security.png", position: "50% center" },
   },
   {
     id: "hospitality-security",
@@ -85,6 +92,7 @@ const serviceList = [
     detail: "Liberty helps venues create a safer experience for guests and staff through professional presentation, measured communication and early intervention.",
     outcomes: ["Respectful guest interactions", "Proactive issue management", "Alignment with venue teams"],
     icon: "wine",
+    image: { src: "/services/club-hospitality.png", position: "50% center" },
   },
   {
     id: "private-security",
@@ -95,6 +103,7 @@ const serviceList = [
     detail: "Every private assignment begins with listening. We define what protection should feel like, what must remain discreet and how communication will work throughout.",
     outcomes: ["Confidential conversation", "Tailored scope", "Professional discretion"],
     icon: "key",
+    image: { src: "/services/private-security.png", position: "50% center" },
   },
   {
     id: "static-guarding",
@@ -105,6 +114,7 @@ const serviceList = [
     detail: "Static guarding is tailored to the responsibilities of the site, with clear briefing, professional conduct and communication that keeps stakeholders informed.",
     outcomes: ["Defined post instructions", "Consistent professional presence", "Accountable reporting"],
     icon: "shield",
+    image: { src: "/services/static-guarding-v2.png", position: "44% center" },
   },
   {
     id: "cctv-monitoring",
@@ -115,6 +125,7 @@ const serviceList = [
     detail: "Liberty personnel monitor CCTV from your site, following agreed procedures and escalating observed activity to the right people when needed.",
     outcomes: ["On-site camera observation", "Site-aligned escalation", "Clear communication"],
     icon: "camera",
+    image: { src: "/services/cctv-monitoring.png", position: "50% center" },
   },
 ] satisfies readonly Service[];
 

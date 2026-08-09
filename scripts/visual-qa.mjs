@@ -17,12 +17,6 @@ for (const width of widths) {
   });
   await page.goto("http://localhost:3000", { waitUntil: "networkidle" });
   await page.getByTestId("liberty-preloader").waitFor({ state: "hidden", timeout: 10_000 });
-  const scenes = page.locator("[data-motion-scene]");
-  for (let index = 0; index < await scenes.count(); index += 1) {
-    await scenes.nth(index).scrollIntoViewIfNeeded();
-    await page.waitForTimeout(280);
-  }
-  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
   await page.waitForTimeout(350);
   const dimensions = await page.evaluate(() => ({ client: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }));
   await page.screenshot({ path: `test-results/visual/liberty-${width}.png`, fullPage: true });

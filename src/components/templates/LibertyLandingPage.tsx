@@ -1,6 +1,7 @@
-import { ArrowDown, ArrowRight, Check, Phone, Radio, Shield, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowRight, Phone, Radio, Shield, Sparkles } from "lucide-react";
 import { Container } from "@/components/atoms/Container";
 import { MetaChip } from "@/components/atoms/MetaChip";
+import { HeroContentEntrance } from "@/components/molecules/HeroContentEntrance";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ScrollReveal } from "@/components/molecules/ScrollReveal";
 import { TrackedCta } from "@/components/molecules/TrackedCta";
@@ -8,8 +9,8 @@ import { AnalyticsConsent } from "@/components/organisms/AnalyticsConsent";
 import { ContactForm } from "@/components/organisms/ContactForm";
 import { Footer } from "@/components/organisms/Footer";
 import { Header } from "@/components/organisms/Header";
-import { LibertyMotionCanvas } from "@/components/organisms/LibertyMotionCanvas";
-import { MotionDirector } from "@/components/organisms/MotionDirector";
+import { HeroEagleFog } from "@/components/organisms/HeroEagleFog";
+import { HeroEagleImage } from "@/components/organisms/HeroEagleImage";
 import { Preloader } from "@/components/organisms/Preloader";
 import { PrivacyDialog } from "@/components/organisms/PrivacyDialog";
 import { ServiceExplorer } from "@/components/organisms/ServiceExplorer";
@@ -21,37 +22,33 @@ export function LibertyLandingPage() {
     <>
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <Preloader />
-      <LibertyMotionCanvas />
-      <MotionDirector />
       <Header />
       <main id="main-content">
-        <section id="top" className="hero-section" data-motion-scene="eagle" data-testid="home-hero-section" aria-labelledby="hero-heading">
+        <section id="top" className="hero-section" data-testid="home-hero-section" aria-labelledby="hero-heading">
+          <HeroEagleImage />
+          <HeroEagleFog />
           <Container className="hero-section__inner">
-            <div className="hero-section__copy">
+            <HeroContentEntrance>
               <MetaChip>{heroContent.eyebrow}</MetaChip>
               <h1 id="hero-heading">People <em>protecting</em> people.</h1>
               <p>{heroContent.lead}</p>
               <div className="hero-section__actions">
                 <TrackedCta href="#contact" eventName="hero_contact" data-testid="hero-primary-cta">{heroContent.primaryCta}</TrackedCta>
-                <TrackedCta href="#services" variant="outline" eventName="hero_services" showArrow={false} data-testid="hero-secondary-cta">{heroContent.secondaryCta}<ArrowDown aria-hidden="true" size={16} /></TrackedCta>
+                <TrackedCta className="hero-section__secondary-cta" href="#services" variant="outline" eventName="hero_services" showArrow={false} data-testid="hero-secondary-cta">{heroContent.secondaryCta}<ArrowDown aria-hidden="true" size={16} /></TrackedCta>
               </div>
-            </div>
-            <aside className="hero-section__proof" aria-label="How Liberty works">
-              <span>Our standard</span>
-              {heroContent.proof.map((item) => <p key={item}><Check aria-hidden="true" size={14} />{item}</p>)}
-            </aside>
+            </HeroContentEntrance>
             <p className="hero-section__scroll"><span>Scroll to follow the story</span><i aria-hidden="true" /></p>
           </Container>
         </section>
 
-        <section id="services" className="services-section section-surface section-surface--cream" data-motion-scene="services" data-testid="home-services-section" aria-labelledby="services-heading">
+        <section id="services" className="services-section section-surface section-surface--cream" data-testid="home-services-section" aria-labelledby="services-heading">
           <Container>
             <ScrollReveal><SectionHeading id="services-heading" eyebrow="What we protect" heading="Security shaped around the situation — not a generic shift." copy="Start with the service closest to your needs. We’ll clarify the details together before proposing the right team and approach." /></ScrollReveal>
             <ServiceExplorer />
           </Container>
         </section>
 
-        <section id="why-liberty" className="why-section section-surface section-surface--blue" data-motion-scene="shield" data-testid="home-why-liberty-section" aria-labelledby="why-heading">
+        <section id="why-liberty" className="why-section section-surface section-surface--blue" data-testid="home-why-liberty-section" aria-labelledby="why-heading">
           <Container>
             <div className="why-section__intro">
               <ScrollReveal><SectionHeading id="why-heading" eyebrow="Why Liberty" heading="Confidence is built before anyone arrives on site." copy="Liberty was created to raise the standard of service around security personnel — with preparation, direct communication and accountable leadership." tone="light" /></ScrollReveal>
@@ -63,7 +60,7 @@ export function LibertyLandingPage() {
           </Container>
         </section>
 
-        <section id="process" className="process-section section-surface section-surface--black" data-motion-scene="path" data-testid="home-process-section" aria-labelledby="process-heading">
+        <section id="process" className="process-section section-surface section-surface--black" data-testid="home-process-section" aria-labelledby="process-heading">
           <Container>
             <ScrollReveal><SectionHeading id="process-heading" eyebrow="The Liberty experience" heading="Straightforward from first conversation to final review." copy="A clear five-step rhythm keeps the right people informed and makes every assignment easier to manage." tone="light" /></ScrollReveal>
             <ol className="process-list" data-testid="home-process-step-list">
@@ -72,7 +69,7 @@ export function LibertyLandingPage() {
           </Container>
         </section>
 
-        <section id="clients" className="industries-section section-surface section-surface--cream" data-motion-scene="auckland" data-testid="home-clients-section" aria-labelledby="clients-heading">
+        <section id="clients" className="industries-section section-surface section-surface--cream" data-testid="home-clients-section" aria-labelledby="clients-heading">
           <Container>
             <div className="industries-section__layout">
               <ScrollReveal><SectionHeading id="clients-heading" eyebrow="Environments we understand" heading="Auckland is not one setting. Your security plan should reflect that." copy="We support organisations and individuals across event, hospitality, commercial, construction and private environments in the Auckland Region." /></ScrollReveal>
@@ -82,7 +79,7 @@ export function LibertyLandingPage() {
           </Container>
         </section>
 
-        <section id="about" className="about-section section-surface section-surface--gold" data-motion-scene="wings" data-testid="home-about-section" aria-labelledby="about-heading">
+        <section id="about" className="about-section section-surface section-surface--gold" data-testid="home-about-section" aria-labelledby="about-heading">
           <Container>
             <div className="about-section__statement">
               <MetaChip>{aboutContent.eyebrow}</MetaChip>
@@ -102,7 +99,7 @@ export function LibertyLandingPage() {
           </Container>
         </section>
 
-        <section id="contact" tabIndex={-1} className="contact-section section-surface section-surface--blue" data-motion-scene="promise" data-testid="home-contact-section" aria-labelledby="contact-heading">
+        <section id="contact" tabIndex={-1} className="contact-section section-surface section-surface--blue" data-testid="home-contact-section" aria-labelledby="contact-heading">
           <Container>
             <div className="contact-section__layout">
               <div className="contact-section__intro">

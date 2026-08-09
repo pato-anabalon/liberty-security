@@ -23,6 +23,8 @@ The technical foundation is implemented for one Auckland-focused landing page. `
 
 No individual service routes exist by approved commercial decision.
 
+`/services-experiment` is a temporary visual prototype with `noindex, nofollow`, a self-referencing canonical and no sitemap entry. It is not an SEO landing page or an approved individual service route.
+
 ## Pending technical work
 
 - Set final domain and verify canonical/OG absolute URLs.
@@ -59,3 +61,21 @@ Only consider these after search demand, operational capacity and unique evidenc
 - 2026-08-02: plans/pricing removed; all conversion is enquiry-led.
 - 2026-08-02: FAQ remains hidden and no Breadcrumb/FAQ schema is emitted.
 - 2026-08-02: client evidence uses an honest pending state rather than mock proof.
+- 2026-08-05: the hero visual changed from particles to an animated line mesh; commercial copy, headings, metadata and structured data remain unchanged.
+- 2026-08-07: replaced the visible hero line eagle with `public/brand/eagle.jpg` and an isolated GSAP fog component on absolute black. Copy, headings, metadata, structured data and commercial claims remain unchanged.
+- 2026-08-07: added a reference-inspired animated light-fold background behind the complete hero. Copy, headings, metadata, structured data and commercial claims remain unchanged.
+- 2026-08-07: removed the mist experiment from the rendered hero and retained its isolated component for possible reuse elsewhere. The hero returns to the eagle image plus localized fog; SEO and commercial content remain unchanged.
+- 2026-08-07: removed the persistent WebGL eagle line layer from all non-hero sections, including its motion director and Three.js dependency. The hero image and localized fog remain unchanged; SEO and commercial content are unaffected.
+- 2026-08-07: increased the localized hero fog visibility without changing copy, headings, metadata, structured data or commercial claims.
+- 2026-08-07: removed the secondary `Our standard` hero panel and rounded only the hero CTAs. Primary copy, CTA destinations, headings, metadata, structured data and commercial claims remain unchanged.
+- 2026-08-07: kept the secondary hero CTA content on one line and added a reduced-motion-safe hero content entrance after the preloader. Copy, CTA destinations, headings, metadata, structured data and commercial claims remain unchanged.
+- 2026-08-07: split the H1 and hero lead into accessible word-level entrance sequences and added an independent cinematic eagle reveal. CTA content, copy, headings, metadata, structured data and commercial claims remain unchanged.
+- 2026-08-07: corrected the eagle intro by centring its reveal on the eye and extending the fade/mask progression; this motion-only adjustment does not change indexable content, metadata, structured data or commercial claims.
+- 2026-08-07: removed the gold light sweep from the eagle intro while retaining its eye-centred iris and depth settle; indexable content and SEO surfaces remain unchanged.
+- 2026-08-07: replaced the header wordmark with the centred `liberty-logo.png`, redistributed navigation around it, renamed two labels to `How we work` and `About us`, and kept all anchor destinations unchanged. Metadata, structured data and commercial claims are unaffected.
+- 2026-08-07: widened the desktop header container, removed the phone underline and corrected the mobile navigation to use an opaque full-height overlay. This responsive-only adjustment leaves navigation destinations and SEO surfaces unchanged.
+- 2026-08-07: added a reduced-motion-safe top-to-bottom navbar entrance after the preloader. Navigation content, destinations, metadata and structured data remain unchanged.
+- 2026-08-07: replaced the first-session preloader with a white logo/wordmark loader and a black circular hero handoff, removing its Skip control. This motion-only change leaves indexable copy, headings, metadata, structured data and commercial claims unchanged.
+- 2026-08-07: corrected the preloader's server-rendered state so its branding remains visible before JavaScript hydration on slow connections. The correction changes no indexable copy, metadata, structured data or commercial claims.
+- 2026-08-07: replaced the preloader's raster-prone scaled point with a vector circular clip for a cleaner fullscreen handoff. This rendering-only adjustment changes no indexable or commercial content.
+- 2026-08-09: added the isolated `/services-experiment` prototype to test an image-led gallery-to-detail interaction. It remains `noindex, nofollow`, excluded from the sitemap and separate from the landing until visual approval.

@@ -6,8 +6,7 @@ Production-oriented single-page website for Liberty Security, an Auckland Region
 
 - Next.js 16 App Router, React 19 and strict TypeScript
 - Tailwind CSS 4 plus design tokens in `src/app/globals.css`
-- GSAP, `@gsap/react` and ScrollTrigger
-- Three.js for the persistent particle story
+- GSAP, `@gsap/react` and SplitText for the navbar entrance, eagle reveal, fog, preloader-coordinated hero entrance and one-time reveals
 - Lucide icons, Zod validation
 - Vercel Blob, Upstash Redis and Resend integration boundaries
 - Vitest and Playwright
@@ -37,9 +36,13 @@ npm run verify       # lint + typecheck + unit tests + build
 
 ## Public route and sections
 
-Only `/` is indexable. It contains `hero`, `services`, `why-liberty`, `process`, `clients`, `about` and `contact`. Service detail is presented in a dialog; there are no service or plan routes. `/api/*` contains operational handlers and is disallowed in robots.
+Only `/` is indexable. It contains `hero`, `services`, `why-liberty`, `process`, `clients`, `about` and `contact`. The centered header mark links to `#top`, with two navigation labels on each side and contact actions at the right edge on desktop. The hero keeps its commercial copy, a preloader-coordinated content entrance and two rounded conversion paths without a separate proof panel. Service detail is presented in a dialog; there are no indexable service or plan routes. `/api/*` contains operational handlers and is disallowed in robots.
+
+`/services-experiment` is a temporary, `noindex` visual prototype containing only the services section. Desktop uses an eight-panel gallery-to-detail transition; tablet and mobile use an inline accordion. It is intentionally excluded from the sitemap and does not replace or change the landing implementation.
 
 Commercial copy lives in `src/lib/content.ts`; metadata and structured data live in `src/lib/seo.ts`.
+
+On a first visit each production session, a white monochrome preloader waits for the logo, fonts and hero image (with a bounded fallback), then expands a black centre point to hand off seamlessly to the black hero. Its branded outline state is CSS-visible before hydration, so slow JavaScript delivery cannot produce an empty white screen. Development replays the intro on every full page load for reliable visual review. In production, seen sessions bypass it; reduced-motion users and restricted storage always bypass it and receive the same single release event. There is no Skip control.
 
 ## Environment variables
 

@@ -1,0 +1,47 @@
+.root {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  align-items: center;
+  justify-items: end;
+  overflow: hidden;
+  padding: 6rem max(1rem, calc((100vw - 1320px) / 2)) 2rem;
+  pointer-events: none;
+}
+
+.visual {
+  position: relative;
+  width: min(50vw, 736px);
+  aspect-ratio: 736 / 774;
+}
+
+.image {
+  object-fit: contain;
+  opacity: 0.82;
+  filter: contrast(1.06);
+  mix-blend-mode: screen;
+}
+
+@media (max-width: 767px) {
+  .root {
+    align-items: start;
+    padding: 7rem 0 0;
+  }
+
+  .visual {
+    width: min(92vw, 570px);
+    margin-right: -24vw;
+  }
+
+  .image {
+    opacity: 0.5;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .visual {
+    width: min(62vw, 650px);
+    margin-right: -10vw;
+  }
+}
