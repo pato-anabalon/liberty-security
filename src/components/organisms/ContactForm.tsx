@@ -83,7 +83,7 @@ export function ContactForm() {
         setStatus("uploading");
         try {
           const blob = await upload(`liberty-enquiries/${file.name}`, file, {
-            access: "private",
+            access: "public",
             handleUploadUrl: "/api/upload",
             multipart: file.size > 5 * 1024 * 1024,
           });
@@ -130,9 +130,13 @@ export function ContactForm() {
         <TextField id="location" name="location" label="Auckland location (optional)" autoComplete="street-address" error={errors.location} className="contact-form__wide" />
         <TextAreaField id="message" name="message" label="What do you need protected?" rows={5} required hint="Include the setting, approximate people involved and anything that feels important." error={errors.message} className="contact-form__wide" />
       </div>
-      <div className="file-field">
-        <input ref={fileRef} id="attachment" name="attachment" type="file" accept=".pdf,.docx,.jpg,.jpeg,.png,.webp" onChange={(event) => onFileChange(event.target.files?.[0] ?? null)} />
-        <label htmlFor="attachment"><FileUp aria-hidden="true" /><span><strong>{file ? file.name : "Attach a brief or site file"}</strong><small>PDF, DOCX, JPEG, PNG or WebP · up to 10 MB</small></span></label>
+      <div className="file-field" data-has-file={file ? "true" : "false"}>
+        <input ref={fileRef} id="attachment" name="attachment" type="file" accept=".pdf,.docx,.jpg,.jpeg,.png,.webp" disabled={Boolean(file)} onChange={(event) => onFileChange(event.target.files?.[0] ?? null)} />
+        {file ? (
+          <div className="file-field__preview"><FileUp aria-hidden="true" /><span><strong>{file.name}</strong><small>Remove this file to attach a different one</small></span></div>
+        ) : (
+          <label htmlFor="attachment"><FileUp aria-hidden="true" /><span><strong>Attach a brief or site file</strong><small>PDF, DOCX, JPEG, PNG or WebP · up to 10 MB</small></span></label>
+        )}
         {file ? <button type="button" aria-label={`Remove ${file.name}`} onClick={() => { setFile(null); if (fileRef.current) fileRef.current.value = ""; }}><X aria-hidden="true" size={17} /></button> : null}
         {errors.attachment ? <p className="field__error" role="alert">{errors.attachment}</p> : null}
       </div>
