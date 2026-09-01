@@ -26,7 +26,6 @@ Run `npm run lint`, `npm run typecheck`, `npm run test` and `npm run build`. For
 - CCTV Monitoring means on-site surveillance.
 - Never invent clients, testimonials, reviews, credentials, licences, awards, metrics or outcomes.
 - Development placeholders must remain absent from production.
-- Replace the mock phone and pending company details before launch.
 
 ## Refactor boundary
 

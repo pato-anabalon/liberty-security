@@ -21,7 +21,7 @@ export function Footer() {
           <div><span>Coverage</span><p>{siteNotice}</p></div>
         </div>
         <div className="site-footer__bottom">
-          <p>© {new Date().getFullYear()} Liberty Security. NZBN {contactContent.nzbnDisplay}. Security licence details pending approval.</p>
+          <p>© {new Date().getFullYear()} Liberty Security. NZBN {contactContent.nzbnDisplay}.</p>
           <PrivacyButton />
           <a href="#top" aria-label="Back to top">Back to top <ArrowUp aria-hidden="true" size={15} /></a>
         </div>

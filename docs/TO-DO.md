@@ -74,3 +74,18 @@ export const navigation = [
   )}
 </div>
 ```
+
+## 4. PSPLA security licence (pending — request after launch)
+
+- **Status:** Licence number not yet issued by PSPLA. The disclaimer copy `Security licence details pending approval.` has been removed from `src/components/organisms/Footer.tsx` to avoid publishing a "pending" claim on the live site.
+- **Action items:**
+  1. Submit the PSPLA licence application (owner responsibility).
+  2. Once the licence number is issued, add it to the footer copy in `src/components/organisms/Footer.tsx`.
+  3. Update `libertyOrganizationJsonLd` in `src/lib/seo.ts` to include the licence (e.g. as an additional `identifier` entry with `propertyID: "PSPLA"`).
+
+**Suggested footer copy once issued:**
+
+```tsx
+<p>© {new Date().getFullYear()} Liberty Security. NZBN {contactContent.nzbnDisplay}. PSPLA licence {contactContent.licenceDisplay}.</p>
+```
+
