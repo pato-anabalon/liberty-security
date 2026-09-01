@@ -85,7 +85,7 @@ export function ContactForm() {
           const blob = await upload(`liberty-enquiries/${file.name}`, file, {
             access: "private",
             handleUploadUrl: "/api/upload",
-            multipart: true,
+            multipart: file.size > 5 * 1024 * 1024,
           });
           payload.attachmentUrl = blob.url;
         } catch (uploadError) {
