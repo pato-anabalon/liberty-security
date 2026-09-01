@@ -64,6 +64,7 @@ export function Header() {
               <TrackedCta className="site-header__cta" href="#contact" variant="gold" eventName="header_contact" data-testid="header-contact-cta" onClick={() => setOpen(false)}>Let’s talk</TrackedCta>
             </div>
           </div>
+          <p className="site-header__credit">Built with <span aria-hidden="true">💜</span><span className="sr-only">love</span> by <a href="https://www.nodo.co.nz" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>Nodo.co.nz</a></p>
         </nav>
       </Container>
     </header>

@@ -27,7 +27,8 @@ export const navigation = [
   { label: "Services", href: "#services" },
   { label: "Why Liberty", href: "#why-liberty" },
   { label: "How we work", href: "#process" },
-  { label: "About us", href: "#about" },
+  // { label: "About us", href: "#about" }, // Hidden pre-launch — see docs/TO-DO.md §2b
+  { label: "Contact us", href: "#contact" },
 ] as const;
 
 export const heroContent = {

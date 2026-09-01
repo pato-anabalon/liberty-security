@@ -11,7 +11,7 @@ export const metadata: Metadata = homeMetadata;
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-NZ" className={`${manrope.variable} ${sora.variable}`}>
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }

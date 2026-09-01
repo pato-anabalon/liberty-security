@@ -6,13 +6,14 @@ import Image from "next/image";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { TrackedCta } from "@/components/molecules/TrackedCta";
 import { trackEvent } from "@/lib/analytics";
 import { services, type ServiceId } from "@/lib/content";
 import styles from "./ServicesExperiment.module.css";
 
-gsap.registerPlugin(useGSAP, Flip);
+gsap.registerPlugin(useGSAP, Flip, ScrollTrigger);
 
 const desktopQuery = "(min-width: 1024px)";
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
@@ -31,6 +32,24 @@ export function ServicesExperiment({
   const openerIdRef = useRef<ServiceId | null>(null);
   const [selectedId, setSelectedId] = useState<ServiceId | null>(null);
   const { contextSafe } = useGSAP({ scope: rootRef });
+
+  useGSAP(() => {
+    if (window.matchMedia(reducedMotionQuery).matches) return;
+    const root = rootRef.current;
+    if (!root) return;
+    const panels = root.querySelectorAll<HTMLElement>("[data-service-panel]");
+    if (panels.length === 0) return;
+
+    gsap.fromTo(panels, { autoAlpha: 0, y: 28 }, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.7,
+      ease: "power3.out",
+      stagger: 0.06,
+      scrollTrigger: { trigger: root, start: "top 85%", once: true },
+      clearProps: "transform,opacity,visibility",
+    });
+  }, { scope: rootRef });
 
   const openService = useCallback((serviceId: ServiceId) => {
     contextSafe(() => {
