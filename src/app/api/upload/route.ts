@@ -4,7 +4,7 @@ import { ALLOWED_ATTACHMENT_TYPES, MAX_ATTACHMENT_BYTES } from "@/lib/validation
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+  if (!process.env.BLOB_STORE_ID && !process.env.BLOB_READ_WRITE_TOKEN) {
     return Response.json({ error: "Attachment storage is not configured." }, { status: 503 });
   }
   try {
