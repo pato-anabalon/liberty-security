@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Sora } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { homeMetadata } from "@/lib/seo";
 import "./globals.css";
 
@@ -11,7 +12,10 @@ export const metadata: Metadata = homeMetadata;
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-NZ" className={`${manrope.variable} ${sora.variable}`}>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
